@@ -57,23 +57,33 @@ const Main = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    const { name, email, subject, message } = formData;
+    const msgBody = `New message from ${name} (${email})\nSubject: ${subject}\nMessage: ${message}`;
+
     try {
-      const response = await fetch('/api/contact', {
+      const response = await fetch(`https://api.twilio.com/2010-04-01/Accounts/${process.env.REACT_APP_TWILIO_ACCOUNT_SID}/Messages.json`, {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json',
+          'Authorization': 'Basic ' + btoa(`${process.env.REACT_APP_TWILIO_ACCOUNT_SID}:${process.env.REACT_APP_TWILIO_AUTH_TOKEN}`),
+          'Content-Type': 'application/x-www-form-urlencoded',
         },
-        body: JSON.stringify(formData),
+        body: new URLSearchParams({
+          From: process.env.REACT_APP_TWILIO_PHONE_NUMBER,
+          To: process.env.REACT_APP_ADMIN_PHONE_NUMBER,
+          Body: msgBody,
+        }).toString(),
       });
+
       if (response.ok) {
         alert('Message sent successfully!');
         setFormData({ name: '', email: '', subject: '', message: '' });
       } else {
-        alert('Failed to send message. Please try again.');
+        throw new Error('Failed to send message');
       }
     } catch (error) {
-      console.error('Error:', error);
-      alert('An error occurred. Please try again later.');
+      console.error('Error sending message:', error);
+      alert('Failed to send message. Please try again.');
     }
   };
 
@@ -124,7 +134,7 @@ const Main = () => {
             In addition to my academic projects, I gained industry experience during my internship at MotionCut, where I enhanced my web development skills. I actively participate in hackathons and enjoy solving data structure and algorithm problems.
           </p>
           <p className="text-lg transition-colors duration-500 ease-in-out">
-            When I'm not woring, I enjoy playing table tennis and drawing. I'm always keen on learning and applying new technologies to solve  problems.
+            When I'm not working, I enjoy playing table tennis and drawing. I'm always keen on learning and applying new technologies to solve  problems.
           </p>
         </section>
 
@@ -154,10 +164,10 @@ const Main = () => {
         </section>
 
 
-        {/* Contact Section */}
-        <section id="contact" className="py-20">
+       {/* Contact Section */}
+       <section id="contact" className="py-20">
           <h2 className="text-4xl font-bold mb-4 transition-colors duration-500 ease-in-out">Contact Me</h2>
-          <form onSubmit={handleSubmit} className={`max-w-lg mx-auto p-6 border rounded-md shadow-lg transition-colors duration-500 ease-in-out ${darkMode ? 'dark:bg-gray-800' : 'bg-slate-100 borer-gray-300'}`}>
+          <form onSubmit={handleSubmit} className={`max-w-lg mx-auto p-6 border rounded-md shadow-lg transition-colors duration-500 ease-in-out ${darkMode ? 'dark:bg-gray-800' : 'bg-slate-100 border-gray-300'}`}>
             <div className="mb-4">
               <label className="block mb-2 text-sm font-semibold">Name</label>
               <input type="text" name="name" value={formData.name} onChange={handleInputChange} required className={`w-full p-2 border rounded-md ${darkMode ? 'bg-gray-700 text-white border-gray-600' : 'border-gray-300'} transition-colors duration-500 ease-in-out`} />
