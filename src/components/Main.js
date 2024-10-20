@@ -195,10 +195,10 @@ const Main = () => {
         <a href="https://github.com/Hanamaraddi17" target="_blank" rel="noopener noreferrer">
           <Github size={30} />
         </a>
-        <a href="https://www.linkedin.com/in/hanamaraddi-bhandi/" target="_blank" rel="noopener noreferrer">
+        <a href="https://www.linkedin.com/in/hanamaraddi/" target="_blank" rel="noopener noreferrer">
           <Linkedin size={30} />
         </a>
-        <a href="mailto:hanamaraddi17@example.com">
+        <a href="mailto:hanamaraddibb@gmail.com">
           <Mail size={30} />
         </a>
       </div>
