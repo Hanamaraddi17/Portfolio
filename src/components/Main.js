@@ -24,6 +24,7 @@ const projects = [
 
 
   { id: 6, title: 'Artify', description: 'Discover, Collect, and Celebrate Art', image: '/images/artify.png', sourceCode: 'https://github.com/Hanamaraddi17/Artify', demo: 'https://artify-art.vercel.app/' },
+  { id: 7, title: 'Animal Detection', description: 'Discover, Collect, and Celebrate Art', image: '/images/animaldetection.png', sourceCode: 'https://github.com/Hanamaraddi17/AnimalDetection', demo: 'https://animaldetection.vercel.app/' },
 ];
 
 const Main = () => {
