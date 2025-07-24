@@ -13,7 +13,6 @@ const Logo = () => (
 
 const projects = [
   { id: 1, title: 'Calculator', description: 'Basic calculator', image: '/images/calculator.png', sourceCode: 'https://github.com/Hanamaraddi17/Calculator', demo: 'https://calculator-reddy.vercel.app/' },
-  { id: 2, title: 'Register Page', description: 'A Registration page', image: '/images/Register.png', sourceCode: 'https://github.com/Hanamaraddi17/RegistrationForm', demo: 'https://registration-form-reddy.vercel.app/' },
 
   { id: 3, title: 'to-do-List', description: 'A to do list site ', image: '/images/todo.png', sourceCode: 'https://github.com/Hanamaraddi17/To-Do-List', demo: 'https://to-do-list-reddy.vercel.app/' },
 
